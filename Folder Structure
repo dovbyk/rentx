@@ -1,0 +1,51 @@
+backend/
+├── src/
+│   ├── app.ts                    # Express app configuration
+│   ├── server.ts                 # Entry point - starts the server
+│   ├── config/                   # Environment & DB config
+│   │   ├── env.ts
+│   │   └── mongo.ts              # MongoDB connection config
+│   ├── core/                     # Cross-cutting concerns
+│   │   ├── logger.ts
+│   │   ├── errors.ts
+│   │   └── middleware/
+│   │       ├── authMiddleware.ts # JWT auth
+│   │       ├── roleMiddleware.ts # Role-based access control (RBAC)
+│   │       ├── errorHandler.ts
+│   │       └── requestLogger.ts
+│   ├── modules/                  # Domain modules (business logic)
+│   │   ├── auth/
+│   │   │   ├── auth.controller.ts
+│   │   │   ├── auth.routes.ts
+│   │   │   └── auth.service.ts
+│   │   ├── users/
+│   │   │   ├── user.model.ts     # Mongoose schema
+│   │   │   ├── user.controller.ts
+│   │   │   ├── user.routes.ts
+│   │   │   └── user.service.ts
+│   │   ├── hostels/
+│   │   │   ├── hostel.model.ts
+│   │   │   ├── hostel.controller.ts
+│   │   │   ├── hostel.routes.ts
+│   │   │   └── hostel.service.ts
+│   │   ├── rooms/
+│   │   ├── bookings/
+│   │   ├── payments/
+│   │   ├── reviews/
+│   │   └── notifications/        # Email / SMS / push
+│   ├── utils/                    # Reusable helpers
+│   │   ├── jwt.ts
+│   │   ├── email.ts
+│   │   └── validators.ts
+│   ├── types/                    # Global TypeScript interfaces
+│   │   ├── express.d.ts          # Extend Request type with user?
+│   │   └── roles.ts              # Define user/admin/vendor roles
+│   └── jobs/                     # Background tasks
+│       ├── bookingExpiryJob.ts
+│       └── emailQueue.ts
+├── test/                         # All tests
+├── .env
+├── tsconfig.json
+├── package.json
+└── README.md
+
