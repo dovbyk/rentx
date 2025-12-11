@@ -13,20 +13,14 @@ if (!JWT_SECRET || !JWT_EXPIRY) {
     throw new Error("FATAL: JWT_SECRET or JWT_EXPIRY is not defined in the environment.");
 }
 
-/**
- * Generates a JSON Web Token for a given user ID.
- * @param id The user's MongoDB ObjectId.
- * @returns The signed JWT string.
- */
+
 const signToken = (id: Types.ObjectId): string => {
     return jwt.sign({ id }, JWT_SECRET, {
         expiresIn: JWT_EXPIRY, // e.g., '7d'
     });
 };
 
-/**
- * Core service logic for user registration (signup).
- */
+
 const registerUser = async (userData: any): Promise<{ user: IUser, token: string }> => {
     // 1. Check if user already exists
     let user = await User.findOne({ email: userData.email });
@@ -44,9 +38,7 @@ const registerUser = async (userData: any): Promise<{ user: IUser, token: string
     return { user, token };
 };
 
-/**
- * Core service logic for user login.
- */
+
 const loginUser = async (email: string, password: string): Promise<{ user: IUser, token: string }> => {
     // 1. Find the user, explicitly requesting the 'password' field
     // We need '+password' because we set 'select: false' in the model.
