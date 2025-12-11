@@ -3,14 +3,16 @@ import hostelController from '../controllers/hostel.controller';
 import authMiddleware from '../core/middleware/authMiddleware';
 import roleMiddleware from '../core/middleware/roleMiddleware';
 import { UserRole } from '../types/roles';
+import roomRouter from './room.routes'; 
 
 const router = express.Router();
 
-// --- PUBLIC ROUTES ---
+//Any request to /api/v1/hostels/:hostelId/rooms
+router.use('/:hostelId/rooms', roomRouter); 
+
+
 router.get('/', hostelController.getAllHostels);
 
-
-// --- PROTECTED ROUTES ---
 
 // 1. Vendor/Admin Route: Create a new hostel application
 router.post(
